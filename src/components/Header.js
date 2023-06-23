@@ -1,9 +1,9 @@
-import React from 'react'
-import { logo, cart } from '../assets/index'
+import React from 'react';
+import { logo, cart } from '../assets/index';
 
 const Header = () => {
     return (
-        <div className='w-full h-20 bg-white border-b-[1px] border-b-gray-800'>
+        <div className='w-full h-20 bg-white border-b-[1px] border-b-gray-800 font-titleFont sticky top-0 z-50'>
             <div className='max-w-6xl h-full mx-auto flex items-center justify-between'>
                 <div>
                     <img className='w-24' src={logo} alt="logoBike" />
@@ -22,7 +22,7 @@ const Header = () => {
                         <span className='absolute w-8 top-2 left-0 text-sm flex items-center justify-center font-semibold'>0</span>
                     </div>
                     <img className='w-8 h-8 rounded-full'
-                        src='https://images.pexels.com/photos/264547/pexels-photo-264547.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='userLogo' />
+                        src='https://images.pexels.com/photos/264555/pexels-photo-264555.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='userLogo' />
                 </div>
             </div>
         </div>

@@ -53,7 +53,4 @@ const Footer = () => {
     )
 }
 
-export default Footer
-
-
-// https://www.linkedin.com/in/ar-calamusa/
+export default Footer;

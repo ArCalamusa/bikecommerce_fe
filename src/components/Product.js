@@ -23,7 +23,7 @@ const Product = () => {
                         alt="productImg"
                     />
                     <div className='absolute top-4 right-0'>
-                        {details.isNew && (
+                        {details.isnew && (
                             <p className='bg-black text-white font-semibold font-titleFont px-8 py-1'>
                                 Sale
                             </p>

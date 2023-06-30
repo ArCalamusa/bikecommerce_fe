@@ -64,7 +64,7 @@ const ProductsCard = ({ product }) => {
           <p>{product.category}</p>
         </div>
         <div className='absolute top-4 right-0'>
-          {product.isNew && (
+          {product.isnew && (
             <p className='bg-black text-white font-semibold font-titleFont px-6 py-1'>
               Sale
             </p>

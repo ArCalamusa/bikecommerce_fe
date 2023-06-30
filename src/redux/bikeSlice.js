@@ -1,9 +1,29 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    productData: [],
-    userInfo: null,
+    // productData: [],
+    // userInfo: null,
+    response: null,
+    error: null,
+    isLoading: false,
+    products: [],
 };
+
+export const getProduct = createAsyncThunk(
+    "posts/getProduct",
+
+    async ({page, pageSize}, { rejectWithValue }) => {
+        //funzione gestione errore in fase di rigetto, lo mostra
+        try {
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/posts?page=${page}&pageSize=${pageSize}`);
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error("Error fetching posts:", error);
+            return rejectWithValue(error);
+        }
+    }
+);
 
 export const bikeSlice = createSlice({
     name: "bike",

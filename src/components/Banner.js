@@ -4,10 +4,10 @@ import { HiArrowRight, HiArrowLeft } from 'react-icons/hi';
 const Banner = () => {
     const [currentSlide, setCurrentSlide] = useState(0)
     const data = [
-        "https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-        "https://images.unsplash.com/photo-1487803836022-91054ca05fdd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-        "https://images.unsplash.com/photo-1452842290973-d0545e29bd18?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=873&q=80",
-        "https://images.unsplash.com/photo-1497514789819-4190972b5575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+        "https://res.cloudinary.com/docqqlwen/image/upload/v1688302714/Gravel_lh8hdz.jpg",
+        "https://res.cloudinary.com/docqqlwen/image/upload/v1688302714/Rancing_ywgyin.jpg",
+        "https://res.cloudinary.com/docqqlwen/image/upload/v1688403684/MTB_ctk5pp.jpg",
+        "https://res.cloudinary.com/docqqlwen/image/upload/v1688302714/Gravel_lh8hdz.jpg"
     ];
 
     const prevSlide = () => {
@@ -21,30 +21,30 @@ const Banner = () => {
 
     return (
         <div className='w-full h-auto overflow-x-hidden'>
-            <div className="w-screen h-[650px] relative">
+            <div className="w-screen h-[450px] relative">
                 <div
                     style={{ transform: `translateX(-${currentSlide * 100}vw)` }}
                     className='w-[400vw] h-full flex transition-transform duration-1000'>
                     <img
-                        className='w-screen h-full object-cover'
+                        className='w-screen h-full object-contain'
                         src={data[0]}
                         alt="ImgOne"
                         loading='priority'
                     />
                     <img
-                        className='w-screen h-full object-cover'
+                        className='w-screen h-full object-contain'
                         src={data[1]}
                         alt="ImgTwo"
                         loading='priority'
                     />
                     <img
-                        className='w-screen h-full object-cover'
+                        className='w-screen h-full object-contain'
                         src={data[2]}
                         alt="ImgThree"
                         loading='priority'
                     />
                     <img
-                        className='w-screen h-full object-cover'
+                        className='w-screen h-full object-contain'
                         src={data[3]}
                         alt="ImgFour"
                         loading='priority'

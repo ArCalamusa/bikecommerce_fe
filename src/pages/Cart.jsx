@@ -38,8 +38,8 @@ const Cart = () => {
   return (
     <div>
       <img
-        className='w-full h-60 object-cover'
-        src='https://picsum.photos/1920/1080'
+        className='w-full h-80 object-cover'
+        src='https://www.cicliviviani.com/public/page/backgrounds/banner-caschi-luglio-000.png'
         alt='cartImg'
       />
       <div className='max-w-6xl mx-auto py-20 flex'>
@@ -52,11 +52,11 @@ const Cart = () => {
               <span className='font-titleFont font-bold text-lg'> €{totalAmt}
               </span>
             </p>
-            <p className='flex items-center gap-4 text-base'>
+            {/* <p className='flex items-center gap-4 text-base'>
               Spese di spedizione{" "}
               <span> Lorem ipsum dolor sit amet consectetur adipisicing elit.
               </span>
-            </p>
+            </p> */}
           </div>
           <p className='font-titleFont font-semibold flex justify-between mt-6'>
             Totale <span className='text-xl font-bold'>€{totalAmt}</span>

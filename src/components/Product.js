@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { addToCart } from '../redux/bikeSlice';
 import { ToastContainer, toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
+import { HiOutlineArrowLeft } from 'react-icons/hi';
 
 const Product = () => {
     const dispatch = useDispatch()
@@ -18,10 +20,21 @@ const Product = () => {
             <div className='max-w-6xl mx-auto my-10 flex gap-10'>
                 <div className='w-2/5 relative'>
                     <img
-                        className='w-full h-[550px] object-cover'
+                        className='w-full h-[350px] object-cover'
                         src={details.image}
                         alt="productImg"
                     />
+
+                    <div>
+                    <Link to="/">
+                <button className='mt-8 ml-7 flex items-center gap-1 text-gray-400 hover:text-black duration-300'>
+                    <span>
+                        <HiOutlineArrowLeft />
+                    </span>
+                    torna ai prodotti
+                </button>
+            </Link>
+                    </div>
                     <div className='absolute top-4 right-0'>
                         {details.isnew && (
                             <p className='bg-black text-white font-semibold font-titleFont px-8 py-1'>

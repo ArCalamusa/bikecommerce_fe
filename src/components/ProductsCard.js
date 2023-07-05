@@ -23,7 +23,7 @@ const ProductsCard = ({ product }) => {
   };
   return (
     <div className='group relative'>
-      <div onClick={handleDetails} className='w-full h-96 cursor-pointer overflow-hidden'>
+      <div onClick={handleDetails} className='w-full h-55 cursor-pointer overflow-hidden'>
         <img
           className='w-full h-full object-cover group-hover:scale-110 duration-500'
           src={product.image} alt='productImg' />
@@ -64,7 +64,7 @@ const ProductsCard = ({ product }) => {
           <p>{product.category}</p>
         </div>
         <div className='absolute top-4 right-0'>
-          {product.isnew && (
+          {product.isNew && (
             <p className='bg-black text-white font-semibold font-titleFont px-6 py-1'>
               Sale
             </p>

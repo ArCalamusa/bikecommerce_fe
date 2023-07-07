@@ -5,9 +5,9 @@ const Banner = () => {
     const [currentSlide, setCurrentSlide] = useState(0)
     const data = [
         "https://res.cloudinary.com/docqqlwen/image/upload/v1688302714/Gravel_lh8hdz.jpg",
-        "https://res.cloudinary.com/docqqlwen/image/upload/v1688302714/Rancing_ywgyin.jpg",
+        "https://res.cloudinary.com/docqqlwen/image/upload/v1688659555/Racing_fndv70.jpg",
         "https://res.cloudinary.com/docqqlwen/image/upload/v1688403684/MTB_ctk5pp.jpg",
-        "https://res.cloudinary.com/docqqlwen/image/upload/v1688302714/Gravel_lh8hdz.jpg"
+        "https://res.cloudinary.com/docqqlwen/image/upload/v1688302716/e-bike_yv7tiv.jpg"
     ];
 
     const prevSlide = () => {

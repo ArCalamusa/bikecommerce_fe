@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { BookOpenIcon, Bars3BottomRightIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import { Bars3BottomRightIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { logo, cart } from '../assets/index';
+import { nanoid } from 'nanoid';
 
 const Navigation = () => {
   let Links = [
     { name: "HOME", link: "/" },
-    { name: "SERVICE", link: "/" },
-    { name: "ABOUT", link: "/" },
-    { name: "CONTACT", link: "/" },
+    { name: "BLOG", link: "/" },
+    { name: "PERCORSI", link: "/" },
+    { name: "ABOUT US", link: "/" },
   ];
   let [open, setOpen] = useState(false);
 
@@ -30,31 +31,31 @@ const Navigation = () => {
           }
         </div>
         {/* linke items */}
-        <ul className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-white md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-12' : 'top-[-490px]'}`}>
+        <ul className={`md:flex gap-7 md:items-center md:pb-0 pb-12 absolute md:static bg-white md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-18' : 'top-[-490px]'}`}>
           {
             Links.map((link) => (
-              <li className='md:ml-8 md:my-0 my-7 font-semibold'>
+              <li className='md:my-0 my-7 font-semibold'>
                 <a href={link.link} className='text-gray-800 hover:text-[#fb923c] duration-500'>{link.name}</a>
               </li>))
           }
-
-          <Link to='/cart'>
-            <div className='relative ml-7'>
-              <img className='w-8' src={cart} alt="cartImg" />
-              <span className='absolute w-8 top-2 left-0 text-sm flex items-center justify-center font-semibold'>{productData.length}</span>
-            </div>
-          </Link>
-
-          <Link to='/login'>
-            <img className='w-8 h-8 rounded-full ml-7'
-              src={userInfo ? userInfo.image : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs867oiFI9uKZePrJlp5ccrk_PJOu1ABWO8hnIutySxpbwLIHe2VAHDTV6PFb7yua7UbA&usqp=CAU'}
-              alt='userLogo' />
-          </Link>
-          {
-            userInfo && <p className='text-base font-titleFont font-semibold underline underline-offset-2 ml-4'>
-              {userInfo.name}
-            </p>
-          }
+          <li className='md:flex flex gap-5'>
+            <Link to='/cart'>
+              <div className='relative'>
+                <img className='w-8' src={cart} alt="cartImg" />
+                <span className='absolute w-8 top-2 left-0 text-sm flex items-center justify-center font-semibold'>{productData.length}</span>
+              </div>
+            </Link>
+            <Link to='/login'>
+              <img className='w-8 h-8 rounded-full'
+                src={userInfo ? userInfo.image : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs867oiFI9uKZePrJlp5ccrk_PJOu1ABWO8hnIutySxpbwLIHe2VAHDTV6PFb7yua7UbA&usqp=CAU'}
+                alt='userLogo' />
+            </Link>
+            {
+              userInfo && <p className='text-base font-titleFont font-semibold underline underline-offset-2'>
+                {userInfo.name}
+              </p>
+            }
+          </li>
         </ul>
       </div>
     </div>

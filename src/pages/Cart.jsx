@@ -4,9 +4,11 @@ import { useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
+import MainLayout from "../layout/MainLayout";
+import { cartProducts } from "../redux/bikeSlice";
 
 const Cart = () => {
-  const productData = useSelector((state) => state.bike.productData);
+  const productData = useSelector(cartProducts);
   const userInfo = useSelector((state) => state.bike.userInfo);
   const [totalAmt, setTotalAmt] = useState("");
   const [payNow, setPayNow] = useState(false);
@@ -28,7 +30,7 @@ const Cart = () => {
     }
   }
 
-  const payment = async(token)=> {
+  const payment = async (token) => {
     await axios.post("http://localhost:8000/pay", {
       amount: totalAmt * 100,
       token: token
@@ -36,7 +38,7 @@ const Cart = () => {
   }
 
   return (
-    <div>
+    <MainLayout>
       <img
         className='w-full h-80 object-cover'
         src='https://www.cicliviviani.com/public/page/backgrounds/banner-caschi-luglio-000.png'
@@ -52,11 +54,11 @@ const Cart = () => {
               <span className='font-titleFont font-bold text-lg'> €{totalAmt}
               </span>
             </p>
-            {/* <p className='flex items-center gap-4 text-base'>
+            <p className='flex items-center gap-4 text-base'>
               Spese di spedizione{" "}
-              <span> Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              <span> Gratuite per ordini superiori all'importo di € 50
               </span>
-            </p> */}
+            </p>
           </div>
           <p className='font-titleFont font-semibold flex justify-between mt-6'>
             Totale <span className='text-xl font-bold'>€{totalAmt}</span>
@@ -80,7 +82,7 @@ const Cart = () => {
           }
         </div>
       </div>
-    </div>
+    </MainLayout>
   );
 };
 

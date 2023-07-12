@@ -2,14 +2,22 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { MdOutlineClose } from 'react-icons/md';
 import { HiOutlineArrowLeft } from 'react-icons/hi';
-import { decrementQuantity, deleteItem, increamentQuantity, resetCart } from '../redux/bikeSlice';
+import {
+    allProducts,
+    cartProducts,
+    decrementQuantity,
+    deleteItem,
+    increamentQuantity,
+    resetCart
+} from '../redux/bikeSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 
 const CartItem = () => {
     const dispatch = useDispatch()
     let [baseQuantity, setBaseQuantity] = useState(1)
-    const productData = useSelector((state) => state.bike.productData);
+    const productData = useSelector(cartProducts);
+    console.log(productData)
     return (
         <div className='w-2/3 pr-10'>
             <div className='w-full'>

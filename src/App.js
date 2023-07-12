@@ -3,53 +3,19 @@ import Home from './pages/Home';
 import Cart from './pages/Cart';
 import Login from './pages/Login';
 import Product from './components/Product';
-import Navigation from './components/Navigation';
-import Footer from './components/Footer';
-import { createBrowserRouter, Outlet, RouterProvider, ScrollRestoration } from 'react-router-dom';
-import { productsData } from './api/Api';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-const Layout = () => {
-  return (
-    <div>
-      <Navigation />
-      <ScrollRestoration />
-      <Outlet />
-      <Footer />
-    </div>
-  );
-};
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-        loader: productsData,
-      },
-      {
-        path: "/product/:id",
-        element: <Product />,
-      },
-      {
-        path: "/cart",
-        element: <Cart />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-    ],
-  },
-]);
 
 function App() {
   return (
-    <div className='font-titleFont'>
-      <RouterProvider router={router} />
-    </div>
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/product/:id" element={<Product />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
   );
 };
 

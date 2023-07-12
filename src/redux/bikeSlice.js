@@ -7,6 +7,7 @@ const initialState = {
     error: null,
     isLoading: false,
     products: [],
+    cart:[],
 };
 
 export const getProduct = createAsyncThunk(
@@ -30,24 +31,24 @@ export const bikeSlice = createSlice({
     initialState,
     reducers: {
         addToCart: (state, action) => {
-            const item = state.productData.find((item) => item._id === action.payload._id);
+            const item = state.cart.find((item) => item._id === action.payload._id);
 
             if (item) {
                 item.quantity += action.payload.quantity;
             } else {
-                state.productData.push(action.payload);
+                state.cart.push(action.payload);
             }
         },
         deleteItem: (state, action) => {
-            state.productData = state.productData.filter(
+            state.cart = state.cart.filter(
                 (item) => item._id !== action.payload
             );
         },
         resetCart: (state) => {
-            state.productData = [];
+            state.cart = [];
         },
         increamentQuantity: (state, action) => {
-            const item = state.productData.find(
+            const item = state.cart.find(
                 (item) => item._id === action.payload._id
             );
             if (item) {
@@ -55,7 +56,7 @@ export const bikeSlice = createSlice({
             }
         },
         decrementQuantity: (state, action) => {
-            const item = state.productData.find(
+            const item = state.cart.find(
                 (item) => item._id === action.payload._id
             );
             if (item.quantity === 1) {
@@ -74,5 +75,7 @@ export const bikeSlice = createSlice({
     },
 });
 
+export const allProducts = state => state.bike.products
+export const cartProducts = state => state.bike.cart
 export const { addToCart, deleteItem, resetCart, increamentQuantity, decrementQuantity, addUser, removeUser } = bikeSlice.actions;
 export default bikeSlice.reducer;

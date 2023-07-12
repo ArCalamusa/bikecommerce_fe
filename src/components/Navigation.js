@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { logo, cart } from '../assets/index';
 import { nanoid } from 'nanoid';
+import {allProducts, cartProducts} from "../redux/bikeSlice";
 
 const Navigation = () => {
   let Links = [
@@ -15,7 +16,7 @@ const Navigation = () => {
   let [open, setOpen] = useState(false);
 
   const userInfo = useSelector((state) => state.bike.userInfo);
-  const productData = useSelector((state) => state.bike.productData);
+  const productData = useSelector(cartProducts);
 
   return (
     <div className='shadow-md w-full sticky top-0 z-50 left-0'>

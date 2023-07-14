@@ -1,120 +1,66 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { Bars3BottomRightIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { logo, cart } from '../assets/index';
+import { nanoid } from 'nanoid';
+import { allProducts, cartProducts } from "../redux/bikeSlice";
 
 const Navigation = () => {
-    return (
-        <>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <button
-                        class="navbar-toggler"
-                        type="button"
-                        data-mdb-toggle="collapse"
-                        data-mdb-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                    >
-                        <i class="fas fa-bars"></i>
-                    </button>
+  let Links = [
+    { name: "HOME", link: "/" },
+    { name: "BLOG", link: "/" },
+    { name: "ITINERARIES", link: "/" },
+    { name: "ABOUT US", link: "/" },
+  ];
+  let [open, setOpen] = useState(false);
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  const userInfo = useSelector((state) => state.bike.userInfo);
+  const productData = useSelector(cartProducts);
 
-                        <a class="navbar-brand mt-2 mt-lg-0" href="#">
-                            <img
-                                src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
-                                height="15"
-                                alt="MDB Logo"
-                                loading="lazy"
-                            />
-                        </a>
+  return (
+    <div className='shadow-md w-full sticky top-0 z-50 left-0'>
+      <div className='md:flex items-center justify-between bg-white py-4 md:px-10 px-7'>
+        {/* logo section */}
+        <div className='font-bold text-2xl cursor-pointer flex items-center gap-1'>
+          <span><img className='w-14' src={logo} alt="logoBike" /></span>
+        </div>
+        {/* Menu icon */}
+        <div onClick={() => setOpen(!open)} className='absolute right-8 top-6 cursor-pointer md:hidden w-7 h-7'>
+          {
+            open ? <XMarkIcon /> : <Bars3BottomRightIcon />
+          }
+        </div>
+        {/* linke items */}
+        <ul className={`md:flex gap-7 md:items-center md:pb-0 pb-12 absolute md:static bg-white md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-18' : 'top-[-490px]'}`}>
+          {
+            Links.map((link) => (
+              <li key={nanoid()} className='md:my-0 my-7 font-semibold'>
+                <a href={link.link} className='text-gray-800 hover:text-[#fb923c] duration-500'>{link.name}</a>
+              </li>))
+          }
+          <li className='md:flex flex gap-5'>
+            <Link to='/cart'>
+              <div className='relative'>
+                <img className='w-8' src={cart} alt="cartImg" />
+                <span className='absolute w-8 top-2 left-0 text-sm flex items-center justify-center font-semibold'>{productData.length}</span>
+              </div>
+            </Link>
+            <Link to='/login'>
+              <img className='w-8 h-8 rounded-full'
+                src={userInfo ? userInfo.image : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs867oiFI9uKZePrJlp5ccrk_PJOu1ABWO8hnIutySxpbwLIHe2VAHDTV6PFb7yua7UbA&usqp=CAU'}
+                alt='userLogo' />
+            </Link>
+            {
+              userInfo && <p className='text-base font-titleFont font-semibold underline underline-offset-2'>
+                {userInfo.name}
+              </p>
+            }
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+};
 
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Dashboard</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Team</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Projects</a>
-                            </li>
-                        </ul>
-
-                    </div>
-
-
-
-                    <div class="d-flex align-items-center">
-
-                        <a class="text-reset me-3" href="#">
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-
-                        <div class="dropdown">
-                            <a
-                                class="text-reset me-3 dropdown-toggle hidden-arrow"
-                                href="#"
-                                id="navbarDropdownMenuLink"
-                                role="button"
-                                data-mdb-toggle="dropdown"
-                                aria-expanded="false"
-                            >
-                                <i class="fas fa-bell"></i>
-                                <span class="badge rounded-pill badge-notification bg-danger">1</span>
-                            </a>
-                            <ul
-                                class="dropdown-menu dropdown-menu-end"
-                                aria-labelledby="navbarDropdownMenuLink"
-                            >
-                                <li>
-                                    <a class="dropdown-item" href="#">Some news</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">Another news</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="dropdown">
-                            <a
-                                class="dropdown-toggle d-flex align-items-center hidden-arrow"
-                                href="#"
-                                id="navbarDropdownMenuAvatar"
-                                role="button"
-                                data-mdb-toggle="dropdown"
-                                aria-expanded="false"
-                            >
-                                <img
-                                    src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                                    class="rounded-circle"
-                                    height="25"
-                                    alt="Black and White Portrait of a Man"
-                                    loading="lazy"
-                                />
-                            </a>
-                            <ul
-                                class="dropdown-menu dropdown-menu-end"
-                                aria-labelledby="navbarDropdownMenuAvatar"
-                            >
-                                <li>
-                                    <a class="dropdown-item" href="#">My profile</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">Settings</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">Logout</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </>
-    )
-}
-
-export default Navigation
+export default Navigation;

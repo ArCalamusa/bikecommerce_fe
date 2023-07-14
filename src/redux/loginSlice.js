@@ -36,14 +36,14 @@ const loginSlice = createSlice({
 
             .addCase(loginRequest.fulfilled, (state, action) => {
                 state.isLoading = false
-                state.response = action.message
+                state.response = action.payload.message
 
-                if (action.statusCode === 200) {
-                    localStorage.setItem("loggedIn", JSON.stringify(action))
+                if (action.payload.statusCode === 200) {
+                    localStorage.setItem('auth', JSON.stringify(action.payload.token))
                 }
             })
 
-            .addCase(loginRequest.rejected, state => {
+            .addCase(loginRequest.rejected, (state, action) => {
                 state.isLoading = false
                 state.error = "Errore durante il login"
             })

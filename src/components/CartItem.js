@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { MdOutlineClose } from 'react-icons/md';
 import { HiOutlineArrowLeft } from 'react-icons/hi';
 import {
-    allProducts,
     cartProducts,
     decrementQuantity,
     deleteItem,
@@ -15,16 +14,15 @@ import { Link } from 'react-router-dom';
 
 const CartItem = () => {
     const dispatch = useDispatch()
-    let [baseQuantity, setBaseQuantity] = useState(1)
-    const productData = useSelector(cartProducts);
-    console.log(productData)
+    const products = useSelector(cartProducts);
+
     return (
         <div className='w-2/3 pr-10'>
             <div className='w-full'>
                 <h2 className='font-titleFont text-2xl'>il tuo carrello</h2>
             </div>
             <div>
-                {productData.map((item) => (
+                {products.map((item) => (
                     <div
                         key={item._id}
                         className='flex items-center justify-between gap-6 mt-6'

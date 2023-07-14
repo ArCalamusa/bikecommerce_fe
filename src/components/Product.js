@@ -19,10 +19,10 @@ const Product = () => {
     return (
         <MainLayout>
             <div>
-                <div className='max-w-6xl mx-auto my-10 flex gap-10'>
-                    <div className='w-2/5 relative'>
+                <div className='min-w-[50%] flex-col max-w-6xl mx-auto my-10 flex gap-10'>
+                    <div className=''>
                         <img
-                            className='w-full h-[350px] object-cover'
+                            className='w-full object-cover'
                             src={details.image}
                             alt="productImg"
                         />
@@ -38,14 +38,14 @@ const Product = () => {
                             </Link>
                         </div>
                         <div className='absolute top-4 right-0'>
-                            {details.isnew && (
+                            {details.isNew && (
                                 <p className='bg-black text-white font-semibold font-titleFont px-8 py-1'>
                                     Sale
                                 </p>
                             )}
                         </div>
                     </div>
-                    <div className='w-3/5 flex flex-col justify-center gap-12'>
+                    <div className='flex flex-col justify-center gap-12 min-w-[50%] mx-5'>
                         <div>
                             <h2 className='text-4xl font-semibold'>{details.title}</h2>
                             <div className='flex items-center gap-4 mt-3'>
@@ -67,7 +67,7 @@ const Product = () => {
                             </div>
                             <p className='text-xs text-gray-500'>(10 Customer review)</p>
                         </div>
-                        <p className='text-xs text-gray-500 -mt-3'>{details.description}</p>
+                        <p className='text-xs text-gray-500 '>{details.description}</p>
                         <div className='flex gap-4'>
                             <div className='w-52 flex items-center justify-between text-gray-500 gap-4 border p-3'>
                                 <p className='text-sm'>Quantity</p>

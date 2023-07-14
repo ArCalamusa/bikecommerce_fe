@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { logo, cart } from '../assets/index';
 import { nanoid } from 'nanoid';
-import {allProducts, cartProducts} from "../redux/bikeSlice";
+import { allProducts, cartProducts } from "../redux/bikeSlice";
 
 const Navigation = () => {
   let Links = [
     { name: "HOME", link: "/" },
     { name: "BLOG", link: "/" },
-    { name: "PERCORSI", link: "/" },
+    { name: "ITINERARIES", link: "/" },
     { name: "ABOUT US", link: "/" },
   ];
   let [open, setOpen] = useState(false);
@@ -35,7 +35,7 @@ const Navigation = () => {
         <ul className={`md:flex gap-7 md:items-center md:pb-0 pb-12 absolute md:static bg-white md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-18' : 'top-[-490px]'}`}>
           {
             Links.map((link) => (
-              <li className='md:my-0 my-7 font-semibold'>
+              <li key={nanoid()} className='md:my-0 my-7 font-semibold'>
                 <a href={link.link} className='text-gray-800 hover:text-[#fb923c] duration-500'>{link.name}</a>
               </li>))
           }

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { git, google } from '../assets';
+import React, { useState } from 'react';
+import { google } from '../assets';
 import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from 'firebase/auth';
 import { ToastContainer, toast } from 'react-toastify';
-import { Form, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { addUser, removeUser } from '../redux/bikeSlice';
-import axios from 'axios';
 import MainLayout from '../layout/MainLayout';
+import { loginLoading, loginResponse, loginRequest } from "../redux/loginSlice";
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -17,12 +17,33 @@ const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const doLogin = async (e) => {
+        e.preventDefault();
+        dispatch(loginRequest(formData))
+            .then((action) => {
+                if (action.payload && action.payload.token) {
+                    toast.success("Login effettuato con successo");
+                    setTimeout(() => {
+                        navigate("/", { replace: true });
+                    }, 1500);
+                } else {
+                    toast.error("email o password non valida")
+                }
+            });
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
     /* AUTH GOOGLE */
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
     const handleGoogleLogin = (e) => {
         e.preventDefault()
         signInWithPopup(auth, provider).then((result) => {
+            toast.success("Login effettuato con successo");
             const user = result.user;
             dispatch(addUser({
                 _id: user.uid,
@@ -43,7 +64,7 @@ const Login = () => {
     const handleSignOut = () => {
         signOut(auth)
             .then(() => {
-                toast.success("Logout successfully");
+                toast.success("Logout effettuato con successo");
                 dispatch(removeUser());
             }).catch((error) => {
                 console.log(error);
@@ -51,34 +72,18 @@ const Login = () => {
     };
     /* FINE AUTH GOOGLE */
 
-    const handleChange = (event) => {
-        setFormData(prev => ({ ...prev, [event.target.name]: event.target.value }))
-    }
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const response = await axios.post('http://localhost:5050/login', formData)
-            .then((res) => {
-                console.log(res)
-                if (res.status === 200) {
-                    localStorage.setItem("loggedIn", JSON.stringify(res.data))
-                    navigate("/")
-                }
-            })
-    }
-
     return (
         <MainLayout>
             <div className='w-full flex flex-col items-center justify-center gap-10'>
                 {/* inizio form */}
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form className="space-y-6" onSubmit={handleSubmit}>
+                    <form className="space-y-6" onSubmit={doLogin}>
                         <div>
                             <div className="mt-2">
                                 <input
                                     name="email"
                                     type="text"
-                                    onChange={handleChange}
+                                    onChange={handleInputChange}
                                     value={formData.email}
                                     className="block w-full h-12 rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     placeholder='e-mail'
@@ -91,7 +96,7 @@ const Login = () => {
                                 <input
                                     name="password"
                                     type="password"
-                                    onChange={handleChange}
+                                    onChange={handleInputChange}
                                     value={formData.password}
                                     className="block w-full h-12 rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     placeholder='password'

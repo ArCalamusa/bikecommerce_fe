@@ -7,7 +7,7 @@ import { BsPersonFill, BsPaypal } from 'react-icons/bs';
 
 const Footer = () => {
     return (
-        <div className='bg-[#f5ac02] py-10 font-titleFont'>
+        <div className='bg-[#f5ac02] pb-10 pt-5 font-titleFont'>
             <div className='max-w-6xl mx-auto grid grid-cols-4 max-[900px]:grid-cols-1 px-2'>
                 { }
                 <div className='flex flex-col gap-2'>

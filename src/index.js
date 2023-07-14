@@ -7,16 +7,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 import './style/index.css';
 import App from './App';
 import 'react-toastify/dist/ReactToastify.css';
-/*
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-
-const reducer = combineReducers({
-
-})
-
-const store = configureStore({
-  reducer
-}) */
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

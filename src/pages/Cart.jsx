@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CartItem from '../components/CartItem';
 import { useSelector } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 import MainLayout from "../layout/MainLayout";
@@ -31,7 +31,7 @@ const Cart = () => {
   }
 
   const payment = async (token) => {
-    await axios.post("http://localhost:8000/pay", {
+    await axios.post(process.env.REACT_APP_STRIPE_PAY, {
       amount: totalAmt * 100,
       token: token
     })
@@ -40,7 +40,7 @@ const Cart = () => {
   return (
     <MainLayout>
       <img
-        className='w-full h-80 object-cover'
+        className=''
         src='https://www.cicliviviani.com/public/page/backgrounds/banner-caschi-luglio-000.png'
         alt='cartImg'
       />

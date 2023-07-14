@@ -46,7 +46,7 @@ const Login = () => {
             toast.success("Login effettuato con successo");
             const user = result.user;
             dispatch(addUser({
-                _id: user.uid,
+                _id: user._id,
                 name: user.displayName,
                 email: user.email,
                 image: user.photoURL,
